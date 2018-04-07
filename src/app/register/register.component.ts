@@ -17,7 +17,11 @@ export class RegisterComponent implements OnInit {
 
 
   async submitHandler() {
-   await this.authService.register(this.model);
-   alert('success register')
+    const response = await this.authService.register(this.model);
+    if (response['success']) {
+      alert('Success')
+    } else {
+      alert('Faillure')
+    }
   }
 }
