@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-social-feed',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SocialFeedComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth:AuthService) { }
 
   ngOnInit() {
+    this.auth.fetchCurrentUserInfo();
   }
   addEntry(entry) {
     alert(entry.content)

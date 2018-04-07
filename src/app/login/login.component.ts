@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
   model: User;
-  constructor(private _auth: AuthService) { }
+  constructor(private _auth: AuthService,private _router:Router) { }
 
   ngOnInit() {
     this.model = new User();
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   }
   async login() {
     let t = await this._auth.login(this.model);
+    this._router.navigate(['feed']);
     alert('success' + t)
   }
 }
