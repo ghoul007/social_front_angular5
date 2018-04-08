@@ -8,6 +8,10 @@
                     SOCIAL FEED
                   </div>
               </div>
+
+              <app-users-friends></app-users-friends>
+
+
               <app-add-entry [onClick]="addEntry"></app-add-entry>
 
               <app-single-post *ngFor="let post of posts" [post]="post" ></app-single-post>

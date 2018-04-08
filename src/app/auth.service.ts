@@ -53,7 +53,8 @@ private  _cachedToken
       this.currentUser = new User(
         response['firstName'],
         response['lastName'],
-        response['email']
+        response['email'],
+        response['friends'],
       );
 
       return this.currentUser;

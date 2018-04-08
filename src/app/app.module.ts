@@ -13,12 +13,14 @@ import { NetworkService } from './network.service';
 import { LoginComponent } from './login/login.component';
 import { SocialFeedComponent } from './social-feed/social-feed.component';
 import { AddEntryComponent } from './add-entry/add-entry.component';
-import { SinglePostComponent } from './single-post/single-post.component'
+import { SinglePostComponent } from './single-post/single-post.component';
+import { UsersFriendsComponent } from './users-friends/users-friends.component'
 
 const appRoute: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "feed", component: SocialFeedComponent },
+  { path: "users", component: UsersFriendsComponent },
   { path: "", redirectTo: "/register", pathMatch: 'full' }
 ]
 
@@ -29,7 +31,8 @@ const appRoute: Routes = [
     LoginComponent,
     SocialFeedComponent,
     AddEntryComponent,
-    SinglePostComponent
+    SinglePostComponent,
+    UsersFriendsComponent
   ],
   imports: [
     BrowserModule,
