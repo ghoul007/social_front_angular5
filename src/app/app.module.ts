@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { NetworkService } from './network.service';
+import { SocketsService } from './sockets.service';
 import { LoginComponent } from './login/login.component';
 import { SocialFeedComponent } from './social-feed/social-feed.component';
 import { AddEntryComponent } from './add-entry/add-entry.component';
@@ -46,7 +47,7 @@ const appRoute: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoute, { enableTracing: true })
   ],
-  providers: [AuthService, NetworkService],
+  providers: [AuthService, NetworkService, SocketsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

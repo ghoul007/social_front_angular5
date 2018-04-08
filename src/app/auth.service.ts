@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from './models/user';
 import { HttpClient } from '@angular/common/http';
+import { SocketsService } from './sockets.service';
 
 const BACKEND_DOMAIN = "http://127.0.0.1";
 const DEFAULT_TOKEN_STORAGE_KEY = 'AUTH_TOKEN';
@@ -8,9 +9,9 @@ const DEFAULT_TOKEN_STORAGE_KEY = 'AUTH_TOKEN';
 @Injectable()
 export class AuthService {
 
-private  _cachedToken
+  private _cachedToken
   currentUser: User;
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private _socket: SocketsService) { }
 
   register(user: User) {
     return this._http.post(`${BACKEND_DOMAIN}/api/auth/register`,
@@ -44,6 +45,7 @@ private  _cachedToken
 
   async fetchCurrentUserInfo() {
     try {
+      this._socket.getEvent().subscribe(console.log);
       const response = await this._http.get(`${BACKEND_DOMAIN}/api/auth/me`, {
         headers: {
           Authorization: `Bearer ${this.token}`
