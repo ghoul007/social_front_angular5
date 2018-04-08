@@ -1,41 +1,42 @@
 import { Injectable } from '@angular/core';
-import { Location } from "@angular/common";
-import { Observable } from "rxjs/Observable";
-import * as io from "socket.io-client";
+import { Echo } from 'laravel-echo';
+
 @Injectable()
 export class SocketsService {
+  echo: Echo = null
 
-  public socket;
-  observable: any;
-  baseUrl: string;
+  setupWithToken(token) {
+    if (!token) {
+      this.echo = null;
 
-  constructor(location: Location) {
 
-    this.baseUrl = "http://localhost:6001"
-  }
+      return;
+    }
 
-  /**
-   * get Event from SocketIO
-   */
-  getEvent(event = null) {
-    this.observable = new Observable(observer => {
-      this.socket = io(this.baseUrl);
-
-      this.socket.on(event, function (data) {
-        observer.next(data);
-      });
-
-      return () => {
-        this.socket.disconnect();
-      };
+    this.echo = new Echo({
+      broadcaster: 'socket.io',
+      host: 'http://localhost:6001',
+      auth: {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      }
     });
-    return this.observable;
+
+    window['echo'] = this.echo;
+
+    this.listen();
   }
 
-  /**
-   * Send Event to SocketIO
-   */
-  sendEvent(event, data) {
-    this.socket.emit(event, JSON.parse(data));
+  listen() {
+    this.echo.private('test-channel')
+      .listen('.test', (e) => {
+        console.log(e);
+        alert('Received TEST event via Sockets private, secured channel!');
+      });
   }
+
 }
+
+
+

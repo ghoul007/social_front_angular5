@@ -45,7 +45,7 @@ export class AuthService {
 
   async fetchCurrentUserInfo() {
     try {
-      this._socket.getEvent().subscribe(console.log);
+      this._socket.setupWithToken(this.token) ;
       const response = await this._http.get(`${BACKEND_DOMAIN}/api/auth/me`, {
         headers: {
           Authorization: `Bearer ${this.token}`
