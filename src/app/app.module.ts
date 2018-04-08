@@ -8,10 +8,12 @@ import { MatInputModule, MatIconModule, MatCardModule, MatButtonModule } from '@
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import{AuthService} from './auth.service';
+import { AuthService } from './auth.service';
+import { NetworkService } from './network.service';
 import { LoginComponent } from './login/login.component';
 import { SocialFeedComponent } from './social-feed/social-feed.component';
-import { AddEntryComponent } from './add-entry/add-entry.component'
+import { AddEntryComponent } from './add-entry/add-entry.component';
+import { SinglePostComponent } from './single-post/single-post.component'
 
 const appRoute: Routes = [
   { path: "register", component: RegisterComponent },
@@ -26,7 +28,8 @@ const appRoute: Routes = [
     RegisterComponent,
     LoginComponent,
     SocialFeedComponent,
-    AddEntryComponent
+    AddEntryComponent,
+    SinglePostComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,7 @@ const appRoute: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoute, { enableTracing: true })
   ],
-  providers: [AuthService],
+  providers: [AuthService, NetworkService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

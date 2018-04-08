@@ -9,20 +9,10 @@
                   </div>
               </div>
               <app-add-entry [onClick]="addEntry"></app-add-entry>
-              <mat-card class="social-feed-card mt-4">
-                <mat-card-header>
-                  <div mat-card-avatar class="social-feed-avatar">
-                    <mat-icon>face</mat-icon>
-                  </div>
-                  <mat-card-title>Daniel Kmak</mat-card-title>
-                  <mat-card-subtitle>2 hours ago</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                  <p>
-                    Hello everyone in my Friends' Circle! I hope you're having fun here. Wish you all nice weekend!
-                  </p>
-                </mat-card-content>
-              </mat-card>
+
+              <app-single-post *ngFor="let post of posts" [post]="post" ></app-single-post>
+
+
           </div>
       </div>
   </div>
